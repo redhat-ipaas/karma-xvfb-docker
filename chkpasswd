@@ -3,14 +3,13 @@
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 
-export LD_PRELOAD=libnss_wrapper.so
+#export LD_PRELOAD=libnss_wrapper.so
 export NSS_WRAPPER_PASSWD=/usr/local/share/passwd
 export NSS_WRAPPER_GROUP=/etc/group
 
 if [ ! -f /usr/local/share/passwd ]; then
-    echo "File not found!"
+    envsubst < /usr/local/share/passwd.template > /tmp/passwd
 fi
 
-envsubst < /usr/local/share/passwd.template > /tmp/passwd
 
-sh -c "$@"
+/bin/sh -c "$@"
