@@ -4,11 +4,11 @@ export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 
 export LD_PRELOAD=libnss_wrapper.so
-export NSS_WRAPPER_PASSWD=/usr/local/share/passwd
+export NSS_WRAPPER_PASSWD=/tmp/passwd
 export NSS_WRAPPER_GROUP=/etc/group
 
-if [ ! -f /usr/local/share/passwd ]; then
-    envsubst < /usr/local/share/passwd.template > /usr/local/share/passwd
+if [ ! -f /tmp/passwd ]; then
+    envsubst < /usr/local/share/passwd.template > /tmp/passwd
 fi
 
 
